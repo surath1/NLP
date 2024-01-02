@@ -5,19 +5,72 @@
 - !pip install nltk [( https://tedboy.github.io/nlps/index.html )]
 - !pip install svgling
 
-### Tokenization
+#### Tokenization
+```bash
+!pip install nltk
 
-### Stemming 
+from nltk.tokenize import sent_tokenize, word_tokenize
 
-### Lemmatizer
+curpus = """The elephant is the world's largest living creature."""
+document = sent_tokenize(curpus)
+type(document)
+for doc in document:
+    print(doc)
 
-### Stopword
+```
 
-### Parts of speach tagging
+#### Stemming 
+```bash
+from nltk.stem import PorterStemmer
+stemmer = PorterStemmer()
 
-### Named Entity Recognization 
+words = [ "eat","eats","eaten","eattte","eater","run","running","ran","play","playing", "history","hist"]
 
-#### Text to vector
+for word in words:
+    print(word + " -- "+ porterStemmer.stem(word))
+
+```
+
+#### Lemmatizer
+```bash
+from nltk.stem import WordNetLemmatizer
+wnl = WordNetLemmatizer()
+print(wnl.lemmatize('dogs'))
+
+words = [ "eat","eats","eaten","eattte","eater","run","running","ran","play","playing", "history","hist"]
+for word in words:
+    print(word + " -- "+ wnl.lemmatize(word))
+
+```
+#### Stopword
+```bash
+from nltk.corpus import stopwords
+stopwords.words()
+stopwords.words('english')
+
+```
+#### Parts of speach tagging
+```bash
+import nltk
+nltk.pos_tag(['India', 'is', 'a', 'beautiful', 'country'])
+
+```
+#### Named Entity Recognization 
+```bash
+import nltk
+
+sentences = """ The Jagannath Temple is an important Hindu temple dedicated to Jagannath, a form of Vishnu – one of the trinity of supreme divinity in Hinduism. Puri is in the state of Odisha, on the eastern coast of India.
+King Indradyumna of Avanti has built the main temple of Jagannath at Puri."
+
+words = nltk.word_tokenize(sentences)
+elements = nltk.pos_tag(words)
+
+nltk.ne_chunk(elements)
+
+nltk.ne_chunk(elements).draw()
+
+```
+#### NLP Text to vector technique
 - One HOT Encoding
 - Bag of words (BOW)
 - TF-IDF
